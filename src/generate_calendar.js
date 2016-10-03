@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var process = require('process');
+//var process = require('process');
 var assert = require('assert');
 var utf8 = require('utf8');
 var fs = require('fs');

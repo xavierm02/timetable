@@ -1,6 +1,10 @@
 <?php
 	
-	if (!file_exists('events.json') || time () - filemtime ('events.json') >= 10 * 60) {
+	if (
+		!file_exists('events.json')
+		|| time () - filemtime ('events.json') >= 10 * 60
+		|| (file_exists('pdftoics.errors') && file_get_contents('pdftoics.errors') === '')
+	) {
 		shell_exec('(ocamlbuild -quiet -use-ocamlfind pdftoics.native -- | konwert isolatin1-utf8) >events.json 2>pdftoics.errors');
 	}
 	
