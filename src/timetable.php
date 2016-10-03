@@ -14,7 +14,7 @@
 		$data[$cr] = array_key_exists($cr, $_GET) ? $_GET[$cr] === 'on' : false;
 	}
 	$arg = addslashes(json_encode($data));
-	$ics = shell_exec("cat events.json | node generate_calendar.js \"$arg\"");
+	$ics = shell_exec("cat events.json | nodejs generate_calendar.js \"$arg\"");
 	
 	if (array_key_exists('action', $_GET) && $_GET['action'] === 'download') {
 		header('Content-type: text/calendar; charset=utf-8');
