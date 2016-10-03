@@ -1,0 +1,74 @@
+{
+	"CR00": {
+		"name": "Structures algébriques de la réécriture et bases de Gröbner généralisées",
+		"teachers": "Philippe MALBOS, Rouchdi BAHLOUL"
+	},
+	"CR01": {
+		"name": "Fundamental Algorithms in Real Algebraic Geometry",
+		"teachers": "Mohab Safey El Din and Jean-Charles Faugère"
+	},
+	"CR02": {
+		"name": "Resilient and Energy-Aware Scheduling Algorithms",
+		"teachers": "Anne Benoit"
+	},
+	"CR03": {
+		"name": "Network Algorithms for Molecular Biology",
+		"teachers": "Arnaud Mary, Blerina Sinaimeri and Marie-France Sagot"
+	},
+	"CR04": {
+		"name": "Quantum Information and Computation",
+		"teachers": "Pascal Degiovanni, Omar Fawzi and Natacha Portier"
+	},
+	"CR05": {
+		"name": "Monadic Second Order Logic, Automata, Expressivity and Decidability",
+		"teachers": "Matteo Mio and Colin Riba"
+	},
+	"CR06": {
+		"name": "Formal proof and Floating-Point Arithmetic",
+		"teachers": "Jean-Michel Muller, Damien Pous and Laurent Théry"
+	},
+	"CR07": {
+		"name": "Computer Science and Privacy",
+		"teachers": "Benoit Libert and Frédéric Prost"
+	},
+	"CR08": {
+		"name": "Arithmetic Circuit Complexity",
+		"teachers": "Pascal Koiran and Natacha Portier"
+	},
+	"CR09": {
+		"name": "Advanced Topics in Scalable Data Management",
+		"teachers": "Eddy Caron and Gilles Fedak"
+	},
+	"CR10": {
+		"name": "Program Analysis, Safety Program Verification",
+		"teachers": "Laure Gonnord and David Monniaux"
+	},
+	"CR11": {
+		"name": "Mathematical Methods for Image Synthesis",
+		"teachers": "Nicolas Bonneel and Julie Digne"
+	},
+	"CR12": {
+		"name": "Coinductive Methods in Computer Science",
+		"teachers": "Filippo Bonchi, Daniel Hirschkoff and Damien Pous"
+	},
+	"CR13": {
+		"name": "Computational Topology",
+		"teachers": "Francis Lazarus and Arnaud de Mesmay"
+	},
+	"CR14": {
+		"name": "Network Information Theory",
+		"teachers": "Jean-Marie Gorce and Samir M. Perlaza"
+	},
+	"CR15": {
+		"name": "Complex Networks",
+		"teachers": "Eric Fleury and Marton Karsai"
+	},
+	"CR16": {
+		"name": "Advanced Compilers",
+		"teachers": "Christophe Alias and Fabrice Rastello"
+	},
+	"CR17": {
+		"name": "Graph Decompositions: From Tree-Width to Perfect Graphs",
+		"teachers": "Nicolas Trotignon and Stéphan Thomassé"
+	}
+}
