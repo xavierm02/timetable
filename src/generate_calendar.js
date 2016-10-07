@@ -34,6 +34,7 @@ function assert_is_day(day) {
 	assert(day.type === 'day');
 	assert(day.hasOwnProperty('date'));
 	assert(day.hasOwnProperty('month'));
+	assert(day.hasOwnProperty('year'));
 }
 
 function assert_is_time(time) {
@@ -90,11 +91,11 @@ stdin.on('end', function() {
 			var to_time = period.to_time;
 			assert_is_time(to_time);
 			new_event.all_day = false;
-			new_event.from = new Date(2016, day.month - 1, day.date, from_time.hours, from_time.minutes);
-			new_event.to = new Date(2016, day.month - 1, day.date, to_time.hours, to_time.minutes);
+			new_event.from = new Date(day.year, day.month - 1, day.date, from_time.hours, from_time.minutes);
+			new_event.to = new Date(day.year, day.month - 1, day.date, to_time.hours, to_time.minutes);
 		} else {
 			new_event.all_day = true;
-			new_event.day = new Date(Date.UTC(2016, day.month - 1, day.date));
+			new_event.day = new Date(Date.UTC(day.year, day.month - 1, day.date));
 		}
 
 		if (event.hasOwnProperty('course')) {

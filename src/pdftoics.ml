@@ -30,15 +30,51 @@ let get_links () =
 type day = {
 	day_name: string;
 	date: int;
-	month: int
+	month: int;
+	year: int
 }
+
+let year_regexp = Str.regexp_case_fold ".*\\([0-9][0-9][0-9][0-9]\\).*"
+
+let get_year_guesser lines =
+	let years =
+		lines
+		|> Array.to_list
+		|> List.filter_map (fun line ->
+			if Str.string_match year_regexp line 0 then begin
+				let year =
+					Str.matched_group 1 line
+					|> int_of_string
+				in
+				Some year
+			end else begin
+				None
+			end
+		)
+	in
+	match years |> List.sort Pervasives.compare |> List.unique with
+	| [] -> failwith "Could not find year."
+	| [year] -> fun _ -> year
+	| [year1; year2] -> begin
+		if year1 + 1 <> year2 then begin
+			Printf.sprintf "The two years %d and %d are too far apart." year1 year2 |> failwith
+		end;
+		fun month ->
+			if month <= 7 then
+				year2
+			else
+				year1
+	end
+	| _ -> failwith "Found more than two years"
+	
 
 let day_to_json day =
 	`Assoc [
 		("type", `String "day");
 		("day_name", `String day.day_name);
 		("date", `Int day.date);
-		("month", `Int day.month)
+		("month", `Int day.month);
+		("year", `Int day.year)
 	]
 
 let header_regexp =
@@ -47,15 +83,17 @@ let header_regexp =
 	|> Printf.sprintf "\\(%s\\) \\([0-9]+\\)/\\([0-9]+\\)"
 	|> Str.regexp_case_fold
 
-let column_headers_extractor source line =
+let column_headers_extractor source year_guesser line =
 	StringPart.supermatch header_regexp 3 line
 	|> List.map (fun (substring, substring_groups) ->
 		match substring_groups with
 		| [day_name; date; month] -> begin
+			let month = month |> StringPart.get_substring |> int_of_string in
 			let day = {
 				day_name = day_name |> StringPart.get_substring;
 				date = date |> StringPart.get_substring |> int_of_string;
-				month = month |> StringPart.get_substring |> int_of_string
+				month = month;
+				year = year_guesser month
 			} in
 			let string_part = 
 				StringPart.of_clopen_indices line (
@@ -71,12 +109,15 @@ let column_headers_extractor source line =
 	
 
 let pdf_to_cells pdf =
-	pdf
-	|> Printf.sprintf "wget -q -O - %s | pdftotext -layout - - | konwert utf8-isolatin1"
-	|> Unix.open_process_in
-	|> IO.lines_of
-	|> Array.of_enum
-	|> PDFToCells.get_cells (column_headers_extractor pdf)
+	let lines =
+		pdf
+		|> Printf.sprintf "wget -q -O - %s | pdftotext -layout - - | konwert utf8-isolatin1"
+		|> Unix.open_process_in
+		|> IO.lines_of
+		|> Array.of_enum
+	in
+	let year_guesser = get_year_guesser lines in
+	lines |> PDFToCells.get_cells (column_headers_extractor pdf year_guesser)
 
 type event = {
 	source: string option;
