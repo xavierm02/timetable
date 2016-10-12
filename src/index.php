@@ -34,5 +34,6 @@
 			<button type="submit" name="action" value="url" onclick="this.form.action='timetable.php';">Get ICS URL</button>
 			<button type="submit" name="action" value="download" onclick="this.form.action='timetable.php';">Download ICS</button>
 		</form>
+		<a href="https://github.com/xavierm02/timetable">Source code</a>
 	</body>
 </html>

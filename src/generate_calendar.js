@@ -163,6 +163,8 @@ stdin.on('end', function() {
 		var summary = "";
 		if (event.hasOwnProperty('course_name')) {
 			summary = event.course_name;
+		} else if (event.hasOwnProperty('course_number')) {
+			summary = cr(event.course_number);
 		} else if (event.hasOwnProperty('comments')) {
 			summary = event.comments;
 		}
